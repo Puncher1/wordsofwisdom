@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING
 from PIL import Image, ImageDraw, ImageFont
 
 if TYPE_CHECKING:
-    from ..api.quotes import Quote
+    from .api.quotes import Quote
 
 
 QUOTE_FONT = "./bot/resources/Roboto-Regular.ttf"
