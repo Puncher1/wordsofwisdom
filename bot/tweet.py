@@ -2,9 +2,10 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+import mail_support
 from .api.client import Client
 from .utils.common import MAX_POST_LENGTH
-from .utils.image import create_quote_image
+from .image import create_quote_image
 
 if TYPE_CHECKING:
     from api.quotes import Quote
