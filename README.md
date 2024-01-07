@@ -8,3 +8,7 @@
 * Twitter: For creating posts tweepy is used with the Twitter API v2. However uploading medias do not exist in v2 so v1 is used for uploading the image.
 * Quotes: For the quotes the quotes API of API Ninjas is used (https://api-ninjas.com/api/quotes)
 * Image: The quote, author and category text on the image is created with Pillow.
+
+
+## Todo
+* [ ] Post daily quote and pin it at 00:00
