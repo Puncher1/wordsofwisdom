@@ -1,5 +1,4 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
-from datetime import datetime
 
 from bot import tweet
 
