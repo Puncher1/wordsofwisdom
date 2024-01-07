@@ -1,0 +1,4 @@
+tweepy[async]
+python-dotenv
+black
+apscheduler
