@@ -27,4 +27,4 @@ class Client:
             consumer_key=TWITTER_API_KEY,
             consumer_secret=TWITTER_API_SECRET,
         )
-        self.quotes = quotes.Client(token=QUOTES_API_KEY)
+        self.quotes = quotes.Client(token=QUOTES_API_KEY)  # type: ignore # cannot be None here

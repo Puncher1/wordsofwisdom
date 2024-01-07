@@ -3,3 +3,4 @@ python-dotenv
 black
 apscheduler
 pillow==9.5
+pyright

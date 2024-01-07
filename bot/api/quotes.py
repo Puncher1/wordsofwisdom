@@ -5,6 +5,9 @@ from typing import TypedDict, List
 from ..utils.common import CATEGORIES
 
 
+class HTTPException(Exception):
+    pass
+
 
 class QuotePayload(TypedDict):
     quote: str
@@ -35,7 +38,7 @@ class Client:
         if response.status_code == requests.codes.ok:
             return response.json()
         else:
-            print("Error:", response.status_code, response.text)
+            raise HTTPException(f"Request failed (ode {response.status_code}): {response.text}")
 
     def get_random_quote(self) -> Quote:
         weight_except_first = [0.07777 for _ in range(len(CATEGORIES) - 1)]

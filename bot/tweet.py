@@ -38,7 +38,7 @@ def run():
 
         img_out_path = create_quote_image(quote)
         media_img = client.twitter_v1.media_upload(filename=img_out_path)
-        media_img_id = media_img.media_id
+        media_img_id = media_img.media_id  # type: ignore # is not None
 
         client.twitter_v2.create_tweet(text=text, media_ids=[media_img_id])
         print("Tweet created")

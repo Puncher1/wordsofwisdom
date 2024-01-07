@@ -8,7 +8,7 @@ CATEGORIES = [
     "learning",
     "life",
     "money",
-    "success"
+    "success",
 ]
 
 MAX_POST_LENGTH = 280

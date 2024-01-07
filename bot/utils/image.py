@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import os
 import textwrap
 from typing import TYPE_CHECKING
 
@@ -32,16 +31,16 @@ def create_quote_image(quote: Quote) -> str:
     quote_y = 160
     for line in textwrap.wrap(quote_text, width=47):
         quote_draw.text((x, quote_y), line, fill="#ffffff", font=quote_font)
-        quote_y += quote_font.getsize(line)[1] + 10
+        quote_y += quote_font.getsize(line)[1] + 10  # type: ignore
 
     author_draw = ImageDraw.Draw(bg_img)
     author_draw.text((x, 400), author_text, fill="#ffffff", font=author_font)
 
     category_draw = ImageDraw.Draw(bg_img)
     _, _, w, h = category_draw.textbbox((0, 0), category_text, font=category_font)
-    category_draw.text(((1024-w)/2, 115), category_text, font=category_font, fill="#a0a0a0")
+    category_draw.text(((1024 - w) / 2, 115), category_text, font=category_font, fill="#a0a0a0")
 
     img_w, img_h = bg_img.size
-    bg_img.crop((100, 0, img_w-100, img_h)).save(IMG_OUTPUT_PATH, quality=10)
+    bg_img.crop((100, 0, img_w - 100, img_h)).save(IMG_OUTPUT_PATH, quality=10)
 
     return IMG_OUTPUT_PATH
