@@ -12,3 +12,4 @@
 
 ## Todo
 * [ ] Post daily quote and pin it at 00:00
+* [ ] Reposts 
