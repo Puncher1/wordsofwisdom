@@ -1,9 +1,9 @@
-import json
 import random
 import requests
 from typing import TypedDict, List
 
-from utils.common import CATEGORIES, TEXT_LENGTH
+from ..utils.common import CATEGORIES
+
 
 
 class QuotePayload(TypedDict):

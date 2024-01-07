@@ -2,13 +2,12 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from api.client import Client
-from utils.common import MAX_POST_LENGTH
+from .api.client import Client
+from .utils.common import MAX_POST_LENGTH
+from .utils.image import create_quote_image
 
 if TYPE_CHECKING:
     from api.quotes import Quote
-
-
 
 
 client = Client()
@@ -37,12 +36,13 @@ def run():
             quote = client.quotes.get_random_quote()
             text = get_post_text(quote)
 
-        # client.twitter.create_tweet(text=text)
-        # print("Tweet created")
+        img_out_path = create_quote_image(quote)
+        media_img = client.twitter_v1.media_upload(filename=img_out_path)
+        media_img_id = media_img.media_id
+
+        client.twitter_v2.create_tweet(text=text, media_ids=[media_img_id])
+        print("Tweet created")
 
     except Exception as e:
         # TODO: Send email + log
-        print(f"Error {e.__class__.__name__}: {e}")
-        pass
-
-
+        raise e

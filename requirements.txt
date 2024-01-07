@@ -2,3 +2,4 @@ tweepy[async]
 python-dotenv
 black
 apscheduler
+pillow==9.5
