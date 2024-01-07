@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-import mail_support
+from . import mail_support
 from .api.client import Client
 from .utils.common import MAX_POST_LENGTH
 from .image import create_quote_image
@@ -44,6 +44,5 @@ def run():
         client.twitter_v2.create_tweet(text=text, media_ids=[media_img_id])
         print("Tweet created")
 
-    except Exception as e:
-        # TODO: Send email + log
-        raise e
+    except Exception:
+        mail_support.send_error()

@@ -35,10 +35,12 @@ class Client:
         headers = {"X-Api-Key": self.token}
         response = requests.get(self.API_URL.format(category), headers=headers)
 
+        data = response.json()
         if response.status_code == requests.codes.ok:
-            return response.json()
+            return data
         else:
-            raise HTTPException(f"Request failed (ode {response.status_code}): {response.text}")
+            error_msg = data["error"]
+            raise HTTPException(f"Request failed (code {response.status_code}): {error_msg}")
 
     def get_random_quote(self) -> Quote:
         weight_except_first = [0.07777 for _ in range(len(CATEGORIES) - 1)]
