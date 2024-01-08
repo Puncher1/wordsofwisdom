@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import time
 from typing import TYPE_CHECKING
 
 from . import mail_support
@@ -34,6 +35,8 @@ def run():
         text = get_post_text(quote)
 
         while is_text_too_long(text):
+            print("text too long, retrying in 10s")
+            time.sleep(10)
             quote = client.quotes.get_random_quote()
             text = get_post_text(quote)
 
@@ -45,4 +48,7 @@ def run():
         print("Tweet created")
 
     except Exception:
-        mail_support.send_error()
+        try:
+            mail_support.send_error()
+        except Exception as e:
+            print(f"Error occurred while sending mail\n" f"{e.__class__.__name__}: {e}")
