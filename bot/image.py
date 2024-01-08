@@ -14,10 +14,10 @@ AUTHOR_FONT = "./bot/resources/Roboto-LightItalic.ttf"
 CATEGORY_FONT = "./bot/resources/Roboto-Light.ttf"
 IMG_OUTPUT_PATH = "./bot/resources/post_img.png"
 
-bg_img = Image.open("./bot/resources/Post_Background.png")
-
 
 def create_quote_image(quote: Quote) -> str:
+    bg_img = Image.open("./bot/resources/Post_Background.png")
+
     quote_font = ImageFont.truetype(QUOTE_FONT, 28)
     author_font = ImageFont.truetype(AUTHOR_FONT, 20)
     category_font = ImageFont.truetype(CATEGORY_FONT, 14)
@@ -42,5 +42,6 @@ def create_quote_image(quote: Quote) -> str:
 
     img_w, img_h = bg_img.size
     bg_img.crop((100, 0, img_w - 100, img_h)).save(IMG_OUTPUT_PATH, quality=10)
+    bg_img.close()
 
     return IMG_OUTPUT_PATH
