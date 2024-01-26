@@ -3,6 +3,9 @@ from __future__ import annotations
 import time
 from typing import TYPE_CHECKING
 
+import requests.exceptions
+import urllib3.exceptions
+
 from . import mail_support
 from .api.client import Client
 from .utils.common import MAX_POST_LENGTH
@@ -35,8 +38,7 @@ def run():
         text = get_post_text(quote)
 
         while is_text_too_long(text):
-            print("text too long, retrying in 10s")
-            time.sleep(10)
+            time.sleep(1)
             quote = client.quotes.get_random_quote()
             text = get_post_text(quote)
 
@@ -44,8 +46,19 @@ def run():
         media_img = client.twitter_v1.media_upload(filename=img_out_path)
         media_img_id = media_img.media_id  # type: ignore # is not None
 
-        client.twitter_v2.create_tweet(text=text, media_ids=[media_img_id])
-        print("Tweet created")
+        tries = 3
+        for i in range(0, tries):
+            try:
+                client.twitter_v2.create_tweet(text=text, media_ids=[media_img_id])
+            except (TimeoutError, requests.exceptions.ConnectionError, urllib3.exceptions.ProtocolError):
+                print("timeout, retrying in 5s")
+                time.sleep(5)
+            else:
+                print("Tweet created")
+                break
+        else:
+            print("All tries used, final timeout")
+
 
     except Exception:
         try:
