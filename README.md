@@ -1,7 +1,7 @@
 # Words Of Wisdom - X/Twitter Bot
 
 🧠 A Twitter Bot to learn from the wisest words of renowned personalities. <br>
-💡 This application posts insightful quotes and profound thoughts every 40 minute. The post includes an image of the written quote.
+💡 This application posts insightful quotes and profound thoughts every 40 minutes. The post includes an image of the written quote.
 
 <br>
 
